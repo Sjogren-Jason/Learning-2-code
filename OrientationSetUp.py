@@ -10,39 +10,62 @@ names = []
 maxLengthList = 3
 loop = True
 loop1 = True
-
-while loop is True:
-    while len(names) < maxLengthList:
-        hires = input("Enter name of new hires: ")
-        names.append(hires)
-    correct = input("Is this correct?").lower()
-    if correct == "yes":
-        print("Awesome!")
-        loop = False
-    else:
-        loop = True
-        names = []
-
-print(f"{names[0]}, {names[1]}, and {names[2]}")
-orientation_setup = input("Would you like to setup orientation? ").lower()
-if orientation_setup == "yes":
-    while loop1 is True:
-        orientation_start_day = input("What day? ")
-        orientation_start_time = input("What time? ")
-        print(f"{orientation_start_day} at {orientation_start_time}")
-        send = input("Is this correct?").lower()
-        if send == "yes":
-            print("Sending ...")
-            new_hire1 = Person(names[0])
-            new_hire2 = Person(names[1])
-            new_hire3 = Person(names[2])
-            new_hire1.greet()
-            new_hire2.greet()
-            new_hire3.greet()
-            print("Sent!")
-            loop1 = False
+quit_loop = False
+while quit_loop is False:
+    while loop is True:
+        while len(names) < maxLengthList:
+            hires = input("Enter name of new hires: ")
+            names.append(hires)
+        correct = input("Is this correct? ").lower()
+        if correct == "yes":
+            print("Awesome!")
+            print(f"You will be hiring {names[0]}, {names[1]}, and {names[2]}!")
+            loop = False
         else:
-            loop1 = True
+            loop = True
+            names = []
 
-else:
-    print("That's too bad. Goodbye.")
+    orientation_setup = input("Would you like to setup orientation? ").lower()
+    if orientation_setup == "yes":
+        while loop1 is True:
+            orientation_start_day = input("What day? ")
+            orientation_start_time = input("What time? ")
+            print(f"{orientation_start_day} at {orientation_start_time}")
+            send = input("Is this correct and would like to send? ").lower()
+            if send == "yes":
+                print("Sending ...")
+                new_hire1 = Person(names[0])
+                new_hire2 = Person(names[1])
+                new_hire3 = Person(names[2])
+                new_hire1.greet()
+                new_hire2.greet()
+                new_hire3.greet()
+                print("Sent!")
+                loop1 = False
+            elif send == "no":
+                print("Let's try again...")
+                quit_loop = True
+                loop1 = True
+            else:
+                print("""
+Sorry I don't understand.
+Please give a Yes or NO
+Restarting...
+                """)
+                loop1 = True
+
+        continue_loop = input("Would you like to send more? ").lower()
+        if continue_loop == "yes":
+            print("Restarting process...")
+            quit_loop = False
+            loop = True
+            loop1 = True
+            names = []
+        else:
+            print("Goodbye for now...")
+            break
+    elif orientation_setup == "no":
+        print("Why open this app then?")
+        quit_loop = True
+    else:
+        print("Sorry I don't understand, please give a Yes or No.")
