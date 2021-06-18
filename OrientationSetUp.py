@@ -9,6 +9,8 @@ class Person:
 names = []
 maxLengthList = 3
 loop = True
+loop1 = True
+
 while loop is True:
     while len(names) < maxLengthList:
         hires = input("Enter name of new hires: ")
@@ -23,18 +25,24 @@ while loop is True:
 
 print(f"{names[0]}, {names[1]}, and {names[2]}")
 orientation_setup = input("Would you like to setup orientation? ").lower()
-
 if orientation_setup == "yes":
-    orientation_start_day = input("What day? ")
-    orientation_start_time = input("What time? ")
+    while loop1 is True:
+        orientation_start_day = input("What day? ")
+        orientation_start_time = input("What time? ")
+        print(f"{orientation_start_day} at {orientation_start_time}")
+        send = input("Is this correct?").lower()
+        if send == "yes":
+            print("Sending ...")
+            new_hire1 = Person(names[0])
+            new_hire2 = Person(names[1])
+            new_hire3 = Person(names[2])
+            new_hire1.greet()
+            new_hire2.greet()
+            new_hire3.greet()
+            print("Sent!")
+            loop1 = False
+        else:
+            loop1 = True
 
-    new_hire1 = Person(names[0])
-    new_hire1.greet()
-
-    new_hire2 = Person(names[1])
-    new_hire2.greet()
-
-    new_hire3 = Person(names[2])
-    new_hire3.greet()
 else:
     print("That's too bad. Goodbye.")
