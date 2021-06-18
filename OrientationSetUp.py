@@ -54,16 +54,23 @@ Restarting...
                 """)
                 loop1 = True
 
-        continue_loop = input("Would you like to send more? ").lower()
-        if continue_loop == "yes":
-            print("Restarting process...")
-            quit_loop = False
-            loop = True
-            loop1 = True
-            names = []
-        else:
-            print("Goodbye for now...")
-            break
+        loop2 = True
+        while loop2 is True:
+            continue_loop = input("Would you like to send more? ").lower()
+            if continue_loop == "yes":
+                print("Restarting process...")
+                quit_loop = False
+                loop = True
+                loop1 = True
+                names = []
+                loop2 = False
+            elif continue_loop == "no":
+                print("Goodbye for now...")
+                quit_loop = True
+                loop2 = False
+            else:
+                print("Sorry I don't understand, please give a Yes or No.")
+
     elif orientation_setup == "no":
         print("Why open this app then?")
         quit_loop = True
