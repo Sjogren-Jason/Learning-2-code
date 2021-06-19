@@ -26,12 +26,16 @@ while quit_loop is False:
             names = []
 
     orientation_setup = input("Would you like to setup orientation? ").lower()
+
     if orientation_setup == "yes":
+
         while loop1 is True:
+
             orientation_start_day = input("What day? ")
             orientation_start_time = input("What time? ")
             print(f"{orientation_start_day} at {orientation_start_time}")
             send = input("Is this correct and would like to send? ").lower()
+
             if send == "yes":
                 print("Sending ...")
                 new_hire1 = Person(names[0])
@@ -62,15 +66,14 @@ Restarting...
                 quit_loop = False
                 loop = True
                 loop1 = True
-                names = []
                 loop2 = False
+                names = []
             elif continue_loop == "no":
                 print("Goodbye for now...")
                 quit_loop = True
                 loop2 = False
             else:
                 print("Sorry I don't understand, please give a Yes or No.")
-
     elif orientation_setup == "no":
         print("Why open this app then?")
         quit_loop = True
